@@ -1,5 +1,18 @@
+import { Routes, Route, Navigate } from "react-router-dom";
+import Layout from "./components/layout/Layout";
+import SearchPage from "./pages/SearchPage";
+
 function App() {
-  return <h1>Search Aggregator</h1>;
+  return (
+    <Layout>
+      <div>
+        <Routes>
+          <Route path="/" element={<SearchPage />} />
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+      </div>
+    </Layout>
+  );
 }
 
 export default App;

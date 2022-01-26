@@ -1,0 +1,12 @@
+.dropdown {
+  flex: 1;
+}
+
+.dropdown {
+  border: none;
+  height: 2.5rem;
+}
+
+.dropdown:focus-visible {
+  outline: none;
+}

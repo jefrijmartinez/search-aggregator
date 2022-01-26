@@ -2,13 +2,13 @@
 
 ## Introduction
 
-Application to handle information from multiple `RSS` sources, including:
+Application to handle information from multiple `API` sources, including:
+`Keys are included as part of the code to allow external testing but soon they will be removed.`
 
-| Source | Url Reference                                                                         |
-| ------ | ------------------------------------------------------------------------------------- |
-| Google | https://news.google.com/rss/search?hl=en-US&q={SEARCH_TERM}&ie=UTF-8&gl=US&ceid=US:en |
-| Yahoo  | https://www.yahoo.com/news/rss?q={SEARCH_TERM}                                        |
-| Bing   | https://www.bing.com/news/search?q=covid&format=rss                                   |
+| Source      | Url Reference                              |
+| ----------- | ------------------------------------------ |
+| GNews       | https://gnews.io/api/v4/search             |
+| CurrentsApi | https://api.currentsapi.services/v1/search |
 
 ## How will this application work ?
 
