@@ -27,7 +27,9 @@ export class CurrentsService {
         description: article.description,
         url: article.url,
         image: article.image && article.image !== "None" ? article.image : null,
-        publishedAt: moment(article.published).format("LL"),
+        publishedAt: moment(article.published, "YYYY-MM-DD HH:mm:ss Z").format(
+          "LL"
+        ),
         source: {
           name: "Current News",
           author: article.author,

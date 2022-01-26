@@ -27,7 +27,10 @@ export class GNewsService {
         description: article.description,
         url: article.url,
         image: article.image,
-        publishedAt: moment(article.publishedAt).format("LL"),
+        publishedAt: moment(
+          article.publishedAt,
+          "YYYY-MM-DD HH:mm:ss Z"
+        ).format("LL"),
         source: {
           name: "GNews",
           author: article.source.name,
