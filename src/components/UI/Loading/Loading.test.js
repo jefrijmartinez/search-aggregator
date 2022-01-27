@@ -2,11 +2,9 @@ import Loading from "./Loading";
 import { shallow } from "enzyme";
 
 describe("Loading", () => {
-  const component = shallow(<Loading />);
-  const wrapper = component.find(".loading");
-
-  // Test that the component renders without errors.
   it("should render without errors", () => {
+    const component = shallow(<Loading />);
+    const wrapper = component.find(".loading");
     expect(wrapper.length).toBe(1);
   });
 });
