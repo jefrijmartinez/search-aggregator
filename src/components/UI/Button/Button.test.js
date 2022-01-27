@@ -1,34 +1,40 @@
 import Button from "./Button";
 import { shallow } from "enzyme";
 
+const setup = (props = {}) => {
+  const propsPassed = { ...props };
+  const wrapper = shallow(<Button {...propsPassed}>Test</Button>);
+  return wrapper;
+};
+
 describe("Button", () => {
   it("should render without errors", () => {
-    const component = shallow(<Button />);
+    const component = setup();
     const wrapper = component.find(".btn");
     expect(wrapper.length).toBe(1);
   });
 
   it("should render children", () => {
-    const component = shallow(<Button>Test</Button>);
+    const component = setup();
     const wrapper = component.find(".btn");
     expect(wrapper.text()).toBe("Test");
   });
 
   it("should render with correct class", () => {
-    const component = shallow(<Button className="test">Test</Button>);
+    const component = setup({ className: "test" });
     const wrapper = component.find(".test");
     expect(wrapper.length).toBe(1);
   });
 
   it("should render with correct type", () => {
-    const component = shallow(<Button type="submit">Test</Button>);
+    const component = setup({ type: "submit" });
     const wrapper = component.find(".btn");
     expect(wrapper.props().type).toBe("submit");
   });
 
   it("should handle onClick event", () => {
     const onClick = jest.fn();
-    const component = shallow(<Button onClick={onClick}>Test</Button>);
+    const component = setup({ onClick });
     const wrapper = component.find(".btn");
     wrapper.simulate("click");
     expect(onClick).toHaveBeenCalled();
