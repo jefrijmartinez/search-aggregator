@@ -11,8 +11,14 @@ const newsSources = [
 ];
 
 const Search = (props) => {
-  const { onSearch, onSourceChange, queryValue, sourceValue, placeholder } =
-    props;
+  const {
+    onSearch,
+    onSourceChange,
+    className,
+    queryValue,
+    sourceValue,
+    placeholder,
+  } = props;
   const [query, setQuery] = useState(queryValue);
   const [source, setSource] = useState(sourceValue);
 
@@ -30,7 +36,7 @@ const Search = (props) => {
   };
 
   return (
-    <div className={`${props.className ?? ""} ${classes.search}`}>
+    <div className={`${classes.search} ${className || ""}`}>
       <div className={classes["search-controls"]}>
         <Dropdown
           options={newsSources}
