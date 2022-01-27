@@ -11,16 +11,21 @@ export class NewsService {
       case "currents":
         return this.currentsService.getNews(query, page, max);
       default:
-        return new Promise(async (resolve) => {
-          const results = await Promise.all([
-            this.gnewsService.getNews(query, page, max),
-            this.currentsService.getNews(query, page, max),
-          ]);
-          const news = results.reduce((acc, result) => {
-            return acc.concat(result);
-          });
+        return new Promise(async (resolve, reject) => {
+          try {
+            const results = await Promise.all([
+              this.gnewsService.getNews(query, page, max),
+              this.currentsService.getNews(query, page, max),
+            ]);
 
-          resolve(news);
+            const news = results.reduce((acc, result) => {
+              return acc.concat(result);
+            }, []);
+
+            resolve(news);
+          } catch (error) {
+            reject([]);
+          }
         });
     }
   }

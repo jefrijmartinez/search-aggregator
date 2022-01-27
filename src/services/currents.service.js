@@ -4,9 +4,7 @@ import moment from "moment";
 
 export class CurrentsService {
   async getNews(query, page, max) {
-    const response = await axios({
-      method: "GET",
-      url: CURRENT_API_URL,
+    const response = await axios.get(CURRENT_API_URL, {
       params: {
         q: query,
         page: page,
