@@ -50,8 +50,10 @@ const SearchPage = () => {
         sourceValue={source}
       />
       {loading ? <Loading /> : <NewsCollection news={news} />}
-      {news.length === 0 && !loading && <h2>No results</h2>}
-      {error && <div>{error}</div>}
+      {news.length === 0 && !loading && (
+        <h2 className={classes["no-results"]}>No results</h2>
+      )}
+      {error && <div className={classes.error}>{error}</div>}
     </div>
   );
 };
