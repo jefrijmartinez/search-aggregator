@@ -3,6 +3,8 @@ import { Provider } from "react-redux";
 import { mount } from "enzyme";
 import { storeFactory } from "../test/testUtils";
 import { BrowserRouter } from "react-router-dom";
+import * as actions from "../store/actions/search.actions";
+import * as router from "react-router-dom";
 
 const setup = (initialState = {}) => {
   const store = storeFactory(initialState);
@@ -16,7 +18,42 @@ const setup = (initialState = {}) => {
   return wrapper;
 };
 
+jest.mock("../store/actions/search.actions.js", () => {
+  const realImplementation = jest.requireActual(
+    "../store/actions/search.actions.js"
+  );
+  return {
+    _esModule: true,
+    ...realImplementation,
+    searchRequest: jest
+      .fn()
+      .mockReturnValue({ type: "SEARCH_REQUEST", payload: {} }),
+  };
+});
+
+jest.mock("react-router-dom", () => {
+  const realImplementation = jest.requireActual("react-router-dom");
+  return {
+    _esModule: true,
+    ...realImplementation,
+    useLocation: () => {
+      return {
+        search: "?query=value&source=genews",
+      };
+    },
+  };
+});
+
 describe("SearchPage", () => {
+  it("should dispatch searchRequest once", () => {
+    const component = setup({});
+    const wrapper = component.find("select");
+
+    wrapper.simulate("change", { target: { value: "gnews" } });
+
+    expect(actions.searchRequest).toHaveBeenCalledTimes(1);
+  });
+
   it("should render without crashing", () => {
     const component = setup({});
     const wrapper = component.find(".search-page");

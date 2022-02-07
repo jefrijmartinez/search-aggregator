@@ -6,6 +6,7 @@ describe("News Service", () => {
   let service;
 
   beforeEach(() => {
+    jest.resetAllMocks();
     service = new NewsService({ getNews }, { getNews });
   });
 
