@@ -27,7 +27,7 @@ const SearchPage = () => {
     if (query) {
       dispatch(searchRequest(source, query));
     }
-  }, [query, source, dispatch]);
+  }, []);
 
   const onHandleSearch = (e) => {
     e.query && dispatch(searchRequest(e.source, e.query));
